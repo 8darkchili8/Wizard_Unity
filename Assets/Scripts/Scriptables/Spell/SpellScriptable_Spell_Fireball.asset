@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4431d7291e8393d4f9327c2cb80c6fc8, type: 3}
+  m_Name: SpellScriptable_Spell_Fireball
+  m_EditorClassIdentifier: Assembly-CSharp::SpellScriptable
+  spellName: Fireball
+  spellDamage: 3
+  spellCooldown: 3
+  castingSpeed: 3
+  isTargetingOnlyInside: 1
+  targetable:
+    serializedVersion: 2
+    m_Bits: 128
+  isSpellSummoning: 0
+  spellSummon: {fileID: 0}
+  spellSummonNumber: 0
+  spellPreview: {fileID: 21300000, guid: 17488df22d54a5a4fac1c85416e30e3a, type: 3}
+  rotationSpeed: 5
+  spellPrefab: {fileID: 3738075976749043117, guid: 6b99443c822e4224a9b97a9b61473a03, type: 3}

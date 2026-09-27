@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - SpellManager
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Spell
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BKG_Back
+    uniqueID: 4011194875
+    locked: 0
+  - name: BKG_Middle
+    uniqueID: 8476803
+    locked: 0
+  - name: BKG_Front
+    uniqueID: 454368097
+    locked: 0
+  - name: GP_Back
+    uniqueID: 531063705
+    locked: 0
+  - name: GP_Middle
+    uniqueID: 2697704139
+    locked: 0
+  - name: GP_Front
+    uniqueID: 3191683907
+    locked: 0
+  m_RenderingLayers:
+  - Default
