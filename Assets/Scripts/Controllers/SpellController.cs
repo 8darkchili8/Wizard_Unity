@@ -60,8 +60,8 @@ public class SpellController : MonoBehaviour
     {
         foreach(GameObject target in targetList.ToList())
         {
-            EnemyController enemyController = target.GetComponent<EnemyController>();
-            enemyController.TakeHit(spellScriptable.spellDamage);
+            MobController mobController = target.GetComponent<MobController>();
+            mobController.TakeHit(spellScriptable.spellDamage);
         }
     }
 

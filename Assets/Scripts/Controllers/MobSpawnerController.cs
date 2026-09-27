@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemySpawnerController : MonoBehaviour
+public class MobSpawnerController : MonoBehaviour
 {
     [Header("Stats")]
 	[Space]
