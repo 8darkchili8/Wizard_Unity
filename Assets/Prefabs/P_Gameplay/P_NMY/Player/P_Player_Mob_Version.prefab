@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3536408185405376462, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Name
-      value: P_Mob_Player_Base
+      value: P_Player_Mob_Version
       objectReference: {fileID: 0}
     - target: {fileID: 3536408185405376462, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Layer
@@ -75,22 +75,26 @@ PrefabInstance:
     - target: {fileID: 3945439215768375958, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ee0d3674a430f241ae7f434889ee076, type: 3}
-    - target: {fileID: 3945439215768375958, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3945439215768375958, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-      propertyPath: m_Color.g
-      value: 0.39698133
-      objectReference: {fileID: 0}
-    - target: {fileID: 3945439215768375958, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-      propertyPath: m_Color.r
-      value: 0.1745283
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 5bf36d62158bd7847aef96d659129074, type: 3}
     - target: {fileID: 5268998628183337797, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367114549191312112, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3090006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367114549191312112, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: m_Size.y
+      value: 0.69777864
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367114549191312112, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0028268099
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367114549191312112, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.060000002
       objectReference: {fileID: 0}
     - target: {fileID: 7127991002115821655, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Radius
@@ -116,53 +120,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5367114549191312112, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3794857802778057532, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6792629835944127040}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
---- !u!1 &688489141402135104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3794857802778057532, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-  m_PrefabInstance: {fileID: 4405657507679727996}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &6792629835944127040
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688489141402135104}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1.8200369
