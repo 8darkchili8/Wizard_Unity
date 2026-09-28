@@ -9,11 +9,13 @@ public class MobScriptable : ScriptableObject
 	public int damage = 5;							        // Damage delt by the enemy
 	public float speed = 3f;								// Move speed
 	public float detectionRange = 3f;						// Detection range
-    public string faction;                               // Faction of the mob
-    public LayerMask attackableFactions;                   // Faction the mob can target
+    public string faction;                                  // Faction of the mob
+    public LayerMask attackableFactions;                    // Faction the mob can target
+    public string attackablePriorityFaction;                // Faction the mob targets in priority
 
     [Header("Behaviors")]
     [Space]
+    public bool isPlayerMainTarget;				        // Can it moving
     public bool canMoveTowardsTarget;				    // Can it moving
     public bool canMeleeAttack;     				    // Can attack at melee
     public bool canRangeAttack;     				    // Can attack at range

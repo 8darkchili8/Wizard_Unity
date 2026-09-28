@@ -17,8 +17,8 @@ public class MobController : MonoBehaviour
     [SerializeField] private Animator animator;							    // Animator
     [SerializeField] private bool isFlippingY;							    // Does its view needs to be flipped
     [SerializeField] private bool isLookingAtTarget;					    // Is it looking at the player
-    [SerializeField] private GameObject mobCurrentTarget;					// Target position
     [SerializeField] private Collider2D detectionCollider;					// Mob detection collider
+    public GameObject mobCurrentTarget;					                    // Target position
 
     [Header("UI")]
 	[Space]

@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobScriptable
   baseHitPoints: 5
   damage: 5
-  speed: 0.25
+  speed: 0.75
   detectionRange: 3
   faction: PlayerMob
   attackableFactions:
     serializedVersion: 2
     m_Bits: 128
+  attackablePriorityFaction: 
+  isPlayerMainTarget: 0
   canMoveTowardsTarget: 1
   canMeleeAttack: 0
   canRangeAttack: 0

@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     public int TakeHit(int damage)
     {
         hitPoints = hitPoints - damage;
-        Debug.Log("----Player took " + damage + "damages");
-        Debug.Log("----Player has " + hitPoints + "hp remaining");
+        // Debug.Log("----Player took " + damage + "damages");
+        // Debug.Log("----Player has " + hitPoints + "hp remaining");
         IsPlayerDead();
         return hitPoints;
     }

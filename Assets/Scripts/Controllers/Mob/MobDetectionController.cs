@@ -21,7 +21,11 @@ public class MobDetectionController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("---Mob detected : " + collider.gameObject.name);
-        mobController.SetNewCurrentTarget(collider.gameObject);
+        // [TO UPDATE] Set target management
+        Debug.Log("----collider.gameObject.layer : " + collider.gameObject.layer);
+        Debug.Log("----mobController.mobScriptable.attackablePriorityFaction : " + LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction));
+        if((collider.gameObject.layer == LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction)) || mobController.mobCurrentTarget == null){
+            mobController.SetNewCurrentTarget(collider.gameObject);
+        }
     }
 }
