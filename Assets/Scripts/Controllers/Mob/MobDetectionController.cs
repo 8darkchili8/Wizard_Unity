@@ -19,11 +19,10 @@ public class MobDetectionController : MonoBehaviour
         
     }
 
+    // Mob detection trigger
     void OnTriggerEnter2D(Collider2D collider)
     {
         // [TO UPDATE] Set target management
-        Debug.Log("----collider.gameObject.layer : " + collider.gameObject.layer);
-        Debug.Log("----mobController.mobScriptable.attackablePriorityFaction : " + LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction));
         if((collider.gameObject.layer == LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction)) || mobController.mobCurrentTarget == null){
             mobController.SetNewCurrentTarget(collider.gameObject);
         }

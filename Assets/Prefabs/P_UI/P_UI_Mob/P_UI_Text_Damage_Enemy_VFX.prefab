@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 5536780509583851862}
   - component: {fileID: 2213880072302308517}
   m_Layer: 5
-  m_Name: P_UI_Text_Damage_VFX
+  m_Name: P_UI_Text_Damage_Enemy_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

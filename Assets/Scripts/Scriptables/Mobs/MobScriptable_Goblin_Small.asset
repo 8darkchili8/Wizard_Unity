@@ -20,6 +20,9 @@ MonoBehaviour:
   attackableFactions:
     serializedVersion: 2
     m_Bits: 576
+  attackableFactionsList:
+  - Player
+  - PlayerMob
   attackablePriorityFaction: PlayerMob
   isPlayerMainTarget: 0
   canMoveTowardsTarget: 1

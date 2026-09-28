@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class MobController : MonoBehaviour
@@ -7,7 +8,7 @@ public class MobController : MonoBehaviour
     [Header("Stats")]
 	[Space]
     public MobScriptable mobScriptable;                     // Mob stats
-	private int hitPoints = 3;					            // Current hit points
+	public int hitPoints = 3;					            // Current hit points
 
 
     [Header("Params")]
@@ -44,7 +45,7 @@ public class MobController : MonoBehaviour
         hitPoints = mobScriptable.baseHitPoints;
         playerGameObject = GameObject.FindWithTag("Player");
 
-        // Set starting target
+        // Set starting target as player for enemy Mobs
         if(mobScriptable.faction == "Enemy")
         {
             mobCurrentTarget = playerGameObject;
@@ -67,6 +68,14 @@ public class MobController : MonoBehaviour
         if(self.transform.position != playerGameObject.transform.position && mobScriptable.canMoveTowardsTarget)
         {
             GoToCurrentTarget();
+        }
+        // Reseting player as taget if no target fo enemy Mobs
+        if(mobScriptable.faction == "Enemy")
+        {
+            if(mobCurrentTarget == null)
+            {
+                mobCurrentTarget = playerGameObject;
+            }
         }
 
         if(isLookingAtTarget)
@@ -122,12 +131,16 @@ public class MobController : MonoBehaviour
     }
     #endregion
 
+    // Mob attack trigger
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.layer == playerGameObject.layer)
+        foreach(string layerName in mobScriptable.attackableFactionsList)
         {
-            playerController.TakeHit(mobScriptable.damage);
-            DestroySelf();
+            Debug.Log("---- " + LayerMask.LayerToName(collider.gameObject.layer) + " -- " + layerName);
+            if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
+            {
+                collider.GetComponent<MobController>().TakeHit(mobScriptable.damage);
+            }
         }
     }
 

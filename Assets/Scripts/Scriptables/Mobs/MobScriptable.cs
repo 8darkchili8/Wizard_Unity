@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "MobScriptable", menuName = "Scriptable Objects/MobScriptable")]
 public class MobScriptable : ScriptableObject
@@ -9,8 +11,12 @@ public class MobScriptable : ScriptableObject
 	public int damage = 5;							        // Damage delt by the enemy
 	public float speed = 3f;								// Move speed
 	public float detectionRange = 3f;						// Detection range
+
+    [Header("Faction")]
+    [Space]
     public string faction;                                  // Faction of the mob
     public LayerMask attackableFactions;                    // Faction the mob can target
+    public List<string> attackableFactionsList;                    // Faction the mob can target
     public string attackablePriorityFaction;                // Faction the mob targets in priority
 
     [Header("Behaviors")]

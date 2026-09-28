@@ -11,13 +11,13 @@ public class UIController : MonoBehaviour
 	[SerializeField] private GameObject ui_gameOver;                        // Game Over
 
     private GameObject playerGameObject;                                        //Player GameObject
-    private PlayerController playerController;                                  //Player Controller
+    private MobController playerController;                                  //Player Controller
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerGameObject = GameObject.FindWithTag("Player");
-        playerController = playerGameObject.GetComponentInChildren<PlayerController>();
+        playerController = playerGameObject.GetComponentInChildren<MobController>();
     }
 
     // Update is called once per frame
