@@ -21,11 +21,12 @@ public class MobScriptable : ScriptableObject
 
     [Header("Behaviors")]
     [Space]
-    public bool isPlayerMainTarget;				        // Can it moving
-    public bool canMoveTowardsTarget;				    // Can it moving
-    public bool canMeleeAttack;     				    // Can attack at melee
-    public bool canRangeAttack;     				    // Can attack at range
+    public bool isPlayerMainTarget;				        // Does it mainly target the player
+    public bool canMoveTowardsTarget;				    // Can it move
+    public bool canMeleeAttack;     				    // Can it attack at melee
+    public bool canRangeAttack;     				    // Can it attack at range
     public bool canSummon;                              // Can it summon
+    public bool isSelectable;                           // Is it selectable by player
 
     [Header("Summons")]
 	[Space]

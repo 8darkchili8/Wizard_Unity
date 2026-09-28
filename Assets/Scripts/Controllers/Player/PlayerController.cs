@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool isSelecting;
     public bool hasSelection;
     public BoxCollider2D selectionBoxCollider;
+    public List<GameObject> selectedMobs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
             if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && (isSelecting || hasSelection))
             {
                 // Cancel selection
+                selectedMobs =  new List<GameObject>();
                 LeaveMobSelection();
             }
             if(Input.GetMouseButtonDown(0))
@@ -104,8 +106,14 @@ public class PlayerController : MonoBehaviour
 
     private void ExectuteMobSelection()
     {
-        uiController.UI_ReturnMobSelection();
+        selectedMobs = uiController.UI_ReturnMobSelection();
+        Debug.Log("----" + selectedMobs.Count);
+        foreach(GameObject selectedMob in selectedMobs)
+        {
+            selectedMob.GetComponent<MobController>().IsSelectedByPlayer(true);
+        }
         isSelecting = false;
+        LeaveMobSelection();
         // [TO DO] if result given, else, leave selection
         //hasSelection = true;
     }
@@ -114,6 +122,10 @@ public class PlayerController : MonoBehaviour
     {
         isSelecting = false;
         hasSelection = false;
+        foreach(GameObject selectedMob in selectedMobs)
+        {
+            selectedMob.GetComponent<MobController>().IsSelectedByPlayer(false);
+        }
         uiController.UI_LeaveMobSelection();
     }
     #endregion

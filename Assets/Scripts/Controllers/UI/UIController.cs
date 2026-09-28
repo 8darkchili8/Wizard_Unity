@@ -16,12 +16,11 @@ public class UIController : MonoBehaviour
 
     private GameObject playerGameObject;                                        //Player GameObject
     private PlayerController playerController;                                  //Player Controller
-    private MobController playerMobController;                                  //Player Controller
+    private MobController playerMobController;                                  //Player Mob Controller
 
     // Mob selection params
     private Vector2 initialMousePosition;
     private Vector2 currentMousePosition;
-    private BoxCollider2D selectionCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -86,8 +85,8 @@ public class UIController : MonoBehaviour
 
     public List<GameObject> UI_ReturnMobSelection()
     {
-        UI_LeaveMobSelection();
-        return new List<GameObject>();
+        var selectedMobs = selectionGameObject.GetComponent<SelectionColliderController>().ReturnSelectedMobs();
+        return selectedMobs;
     }
 
     public void UI_LeaveMobSelection()

@@ -35,8 +35,9 @@ public class MobController : MonoBehaviour
     private GameObject spellManager;                                        // Spell manager GameObject
     private Transform ui_spellDamageCanvasTransform;                        // Spell damage canvas transform
     // State
-    private bool isMovingToMainTarget;                                           // Is mob moving towards its main target
-    private bool isMovingToSecondary;                                      // Is mob moving towards its secondary target
+    private bool isMovingToMainTarget;                                      // Is mob moving towards its main target
+    private bool isMovingToSecondary;                                       // Is mob moving towards its secondary target
+    private bool isSelectedByPlayer;                                        // Is mob moving towards its secondary target
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -129,6 +130,33 @@ public class MobController : MonoBehaviour
             DestroySelf();
         }
     }
+
+    public void DestroySelf()
+    {
+        animator.SetTrigger("Dying");
+        Destroy(self);
+    }
+    #endregion
+
+    #region Managing mob selection
+    public void IsSelectedByPlayer(bool selected)
+    {
+        isSelectedByPlayer = selected;
+
+        if(isSelectedByPlayer)
+        {
+            // [TO DO] Add visuals when mob is selected
+        }
+        else
+        {
+            // [TO DO] Remove visuals when mob is unselected
+        }
+    }
+
+    public void OrderTargetChange(Transform newCurrentTarget)
+    {
+        //SetNewCurrentTarget();
+    }
     #endregion
 
     // Mob attack trigger
@@ -141,12 +169,6 @@ public class MobController : MonoBehaviour
                 collider.GetComponent<MobController>().TakeHit(mobScriptable.damage);
             }
         }
-    }
-
-    public void DestroySelf()
-    {
-        animator.SetTrigger("Dying");
-        Destroy(self);
     }
 
     #region Managing VFX
