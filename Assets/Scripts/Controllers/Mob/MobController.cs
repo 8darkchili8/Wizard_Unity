@@ -136,7 +136,6 @@ public class MobController : MonoBehaviour
     {
         foreach(string layerName in mobScriptable.attackableFactionsList)
         {
-            Debug.Log("---- " + LayerMask.LayerToName(collider.gameObject.layer) + " -- " + layerName);
             if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
             {
                 collider.GetComponent<MobController>().TakeHit(mobScriptable.damage);
