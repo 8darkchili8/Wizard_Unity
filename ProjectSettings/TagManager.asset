@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - SpellManager
+  - UI
   layers:
   - Default
   - TransparentFX

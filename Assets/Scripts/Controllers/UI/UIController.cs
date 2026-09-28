@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class UIController : MonoBehaviour
 {
@@ -9,10 +11,12 @@ public class UIController : MonoBehaviour
 	[Space]
 	[SerializeField] private TextMeshProUGUI ui_playerLife;                     // Player Life
 	[SerializeField] private GameObject ui_gameOver;                            // Game Over
-    [SerializeField] LineRenderer selectionLineRenderer;                        // Line renderer for mob selection
+    [SerializeField] private LineRenderer selectionLineRenderer;                // Line renderer for mob selection
+    [SerializeField] private GameObject selectionGameObject;                    // Line renderer for mob selection
 
     private GameObject playerGameObject;                                        //Player GameObject
-    private MobController playerController;                                     //Player Controller
+    private PlayerController playerController;                                  //Player Controller
+    private MobController playerMobController;                                  //Player Controller
 
     // Mob selection params
     private Vector2 initialMousePosition;
@@ -23,7 +27,8 @@ public class UIController : MonoBehaviour
     void Start()
     {
         playerGameObject = GameObject.FindWithTag("Player");
-        playerController = playerGameObject.GetComponentInChildren<MobController>();
+        playerController = playerGameObject.GetComponentInChildren<PlayerController>();
+        playerMobController = playerGameObject.GetComponentInChildren<MobController>();
 
         // Mob selection setup
         selectionLineRenderer.positionCount = 0;
@@ -38,11 +43,58 @@ public class UIController : MonoBehaviour
 
     public void UI_UpdateLife()
     {
-        ui_playerLife.text = playerController.hitPoints.ToString();
+        ui_playerLife.text = playerMobController.hitPoints.ToString();
     }
 
     public void UI_GameOver()
     {
         ui_gameOver.SetActive(true);
     }
+
+    #region Mob selection display
+    public void UI_StartPreviewMobSelection()
+    {
+        // Register starting point of selection
+        selectionLineRenderer.positionCount = 4;
+        initialMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        selectionLineRenderer.SetPosition(0, new Vector2(initialMousePosition.x, initialMousePosition.y));
+        selectionLineRenderer.SetPosition(1, new Vector2(initialMousePosition.x, initialMousePosition.y));
+        selectionLineRenderer.SetPosition(2, new Vector2(initialMousePosition.x, initialMousePosition.y));
+        selectionLineRenderer.SetPosition(3, new Vector2(initialMousePosition.x, initialMousePosition.y));
+
+        playerController.selectionBoxCollider = selectionGameObject.AddComponent<BoxCollider2D>();
+        playerController.selectionBoxCollider.isTrigger = true;
+        playerController.selectionBoxCollider.offset = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
+
+    public void UI_UpdatePreviewMobSelection()
+    {
+        // Updating second point of selection
+        currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        selectionLineRenderer.SetPosition(0, new Vector2(initialMousePosition.x, initialMousePosition.y));
+        selectionLineRenderer.SetPosition(1, new Vector2(initialMousePosition.x, currentMousePosition.y));
+        selectionLineRenderer.SetPosition(2, new Vector2(currentMousePosition.x, currentMousePosition.y));
+        selectionLineRenderer.SetPosition(3, new Vector2(currentMousePosition.x, initialMousePosition.y));
+
+        selectionGameObject.transform.position = (currentMousePosition + initialMousePosition) / 2;
+
+        playerController.selectionBoxCollider.size = new Vector2(
+            Mathf.Abs(initialMousePosition.x - currentMousePosition.x),
+            Mathf.Abs(initialMousePosition.y - currentMousePosition.y)
+        );
+    }
+
+    public List<GameObject> UI_ReturnMobSelection()
+    {
+        UI_LeaveMobSelection();
+        return new List<GameObject>();
+    }
+
+    public void UI_LeaveMobSelection()
+    {
+        selectionLineRenderer.positionCount = 0;
+        Destroy(playerController.selectionBoxCollider);
+        transform.position = Vector3.zero;
+    }
+    #endregion
 }

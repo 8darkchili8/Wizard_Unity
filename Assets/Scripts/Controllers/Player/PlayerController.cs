@@ -4,26 +4,55 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-    private SpellManager spellManager;                               // SpellManager
-    private SpellUIController spellUIController;                     // SpellManager
+    private SpellManager spellManager;                               // Spell manager
+    private SpellUIController spellUIController;                     // Spell UI controller
+    private UIController uiController;                               // UI controller 
     
-    // Params
-    private bool isSelecting;
-    private bool hasSelection;
+    // Mob selection params
+    public bool isSelecting;
+    public bool hasSelection;
+    public BoxCollider2D selectionBoxCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         spellManager = GameObject.FindWithTag("SpellManager").GetComponent<SpellManager>();
         spellUIController = spellManager.transform.Find("P_UI_Spell").GetComponent<SpellUIController>();
+        uiController = GameObject.FindWithTag("UI").GetComponent<UIController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Player controls
-        // Cast a spell
-        #region Spell casting
+        
+        #region Mob selection controls
+        if(!hasSelection && !spellManager.isPreviewingSpell)
+        {
+            if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && (isSelecting || hasSelection))
+            {
+                // Cancel selection
+                LeaveMobSelection();
+            }
+            if(Input.GetMouseButtonDown(0))
+            {
+                // Start mob selection
+                EnterMobSelection();
+            }
+            if(Input.GetMouseButton(0) && isSelecting)
+            {
+                // Update mob selection
+                MobSelection();
+            }
+            if(Input.GetMouseButtonUp(0))
+            {
+                ExectuteMobSelection();
+            }
+        }
+
+        #endregion
+
+        #region Spell casting controls
         if(spellManager.isPreviewingSpell)
         {
             if(Input.GetMouseButtonDown(0))
@@ -33,8 +62,6 @@ public class PlayerController : MonoBehaviour
             // Leave spell preview
             if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
             {
-                Debug.Log(spellManager);
-                Debug.Log(spellUIController);
                 spellManager.isPreviewingSpell = false;
                 spellUIController.UI_PreviewSpellActivate(spellManager.isPreviewingSpell);
                 spellManager.currentSpell = null;
@@ -42,7 +69,8 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        #region Shortcuts
+        #region Shortcuts controls
+
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             spellManager.UpdatePlayerCurrentSpellByUI(0);
@@ -60,6 +88,33 @@ public class PlayerController : MonoBehaviour
             spellManager.UpdatePlayerCurrentSpellByUI(3);
         }
         #endregion
-
     }
+
+    #region Mob selection
+    private void EnterMobSelection()
+    {
+        isSelecting = true;
+        uiController.UI_StartPreviewMobSelection();
+    }
+
+    private void MobSelection()
+    {
+        uiController.UI_UpdatePreviewMobSelection();
+    }
+
+    private void ExectuteMobSelection()
+    {
+        uiController.UI_ReturnMobSelection();
+        isSelecting = false;
+        // [TO DO] if result given, else, leave selection
+        //hasSelection = true;
+    }
+
+    private void LeaveMobSelection()
+    {
+        isSelecting = false;
+        hasSelection = false;
+        uiController.UI_LeaveMobSelection();
+    }
+    #endregion
 }

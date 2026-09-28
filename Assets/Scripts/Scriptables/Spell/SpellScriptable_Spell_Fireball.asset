@@ -19,7 +19,7 @@ MonoBehaviour:
   isTargetingOnlyInside: 1
   targetable:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   isSpellSummoning: 0
   spellSummon: {fileID: 0}
   spellSummonNumber: 0
