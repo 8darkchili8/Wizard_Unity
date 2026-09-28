@@ -25,4 +25,4 @@ MonoBehaviour:
   spellSummonNumber: 0
   spellPreview: {fileID: 21300000, guid: 17488df22d54a5a4fac1c85416e30e3a, type: 3}
   rotationSpeed: 5
-  spellPrefab: {fileID: 3738075976749043117, guid: 6b99443c822e4224a9b97a9b61473a03, type: 3}
+  spellPrefab: {fileID: 8858797040554241022, guid: 8fbd3e0ca88ebf34ab034d4ceab56597, type: 3}

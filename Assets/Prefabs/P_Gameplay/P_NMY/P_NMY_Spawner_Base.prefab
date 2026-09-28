@@ -115,6 +115,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993832438888257498, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: mobScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: bdd469251453b2f4691d8bfb7914bd95, type: 2}
+    - target: {fileID: 7993832438888257498, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: isLookingAtPlayer
       value: 0
       objectReference: {fileID: 0}
@@ -139,7 +143,7 @@ PrefabInstance:
       addedObject: {fileID: 8439937698224051332}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3794857802778057532, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
-      insertIndex: 2
+      insertIndex: -1
       addedObject: {fileID: 3926007111804684881}
   m_SourcePrefab: {fileID: 100100000, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
 --- !u!1 &1154886991914556505 stripped

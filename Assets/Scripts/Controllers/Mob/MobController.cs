@@ -6,11 +6,8 @@ public class MobController : MonoBehaviour
 
     [Header("Stats")]
 	[Space]
-	[SerializeField] private int baseHitPoints = 3;							// Base hit points
-	[SerializeField] private int hitPoints = 3;					            // Current hit points
-	[SerializeField] private int enemyDamage = 5;							// Damage delt by the enemy
-	[SerializeField] private float speed = 3f;								// Move speed
-	[SerializeField] private float detectionRange = 3f;						// Detection range
+    public MobScriptable mobScriptable;                     // Mob stats
+	private int hitPoints = 3;					            // Current hit points
 
 
     [Header("Params")]
@@ -18,10 +15,10 @@ public class MobController : MonoBehaviour
     [SerializeField] private GameObject self;							    // Self
     [SerializeField] private GameObject view;							    // View
     [SerializeField] private Animator animator;							    // Animator
-    [SerializeField] private bool isMovingTowardsTarget;				    // Is it moving towards the player
     [SerializeField] private bool isFlippingY;							    // Does its view needs to be flipped
     [SerializeField] private bool isLookingAtTarget;					    // Is it looking at the player
-    [SerializeField] private Collider2D detectionCollider;					    // Mob detection collider
+    [SerializeField] private GameObject mobCurrentTarget;					// Target position
+    [SerializeField] private Collider2D detectionCollider;					// Mob detection collider
 
     [Header("UI")]
 	[Space]
@@ -44,8 +41,14 @@ public class MobController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hitPoints = baseHitPoints;
+        hitPoints = mobScriptable.baseHitPoints;
         playerGameObject = GameObject.FindWithTag("Player");
+
+        // Set starting target
+        if(mobScriptable.faction == "Enemy")
+        {
+            mobCurrentTarget = playerGameObject;
+        }
 
         // Setting up damage display
         spellManager = GameObject.FindWithTag("SpellManager");
@@ -61,9 +64,9 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(self.transform.position != playerGameObject.transform.position && isMovingTowardsTarget)
+        if(self.transform.position != playerGameObject.transform.position && mobScriptable.canMoveTowardsTarget)
         {
-            GoToTarget();
+            GoToCurrentTarget();
         }
 
         if(isLookingAtTarget)
@@ -73,12 +76,20 @@ public class MobController : MonoBehaviour
         }
     }
 
-    #region Managing enemy movement
-    private void GoToTarget()
+    #region Managing mob movement
+    private void GoToCurrentTarget()
     {   
-        // [TO UPDATE] only goes to player
-        self.transform.position = Vector3.MoveTowards(self.transform.position, playerGameObject.transform.position, speed * Time.deltaTime);
-        animator.SetTrigger("Moving");
+        // [TO UPDATE] only goes to player (causing error if no player)
+        if(mobCurrentTarget != null)
+        {
+            self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTarget.transform.position, mobScriptable.speed * Time.deltaTime);
+            animator.SetTrigger("Moving");
+        }
+    }
+
+    public void SetNewCurrentTarget(GameObject newCurrentTarget)
+    {
+        mobCurrentTarget = newCurrentTarget;
     }
 
     private void AimAtTarget(Vector3 targetPosition)
@@ -92,7 +103,7 @@ public class MobController : MonoBehaviour
     }
     #endregion
 
-    #region Manaing enemy life
+    #region Managing mob life
     public int TakeHit(int damage)
     {
         hitPoints = hitPoints - damage;
@@ -115,7 +126,7 @@ public class MobController : MonoBehaviour
     {
         if (collider.gameObject.layer == playerGameObject.layer)
         {
-            playerController.TakeHit(enemyDamage);
+            playerController.TakeHit(mobScriptable.damage);
             DestroySelf();
         }
     }
