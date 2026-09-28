@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MobScriptable_Goblin_Medium
   m_EditorClassIdentifier: Assembly-CSharp::MobScriptable
   baseHitPoints: 5
-  damage: 5
+  damage: 3
   speed: 0.25
   detectionRange: 3
   faction: Enemy
