@@ -18,11 +18,14 @@ public class SpellManager : MonoBehaviour
     public bool isStartingWithCurrentSpell = false;                            // Is player starting with default spell selected
     public bool isPreviewingSpell = false;                                      // Is player previewing the spell
 
+    [Header("Spell params")]
+	[Space]
     public SpellScriptable currentSpell;							            // Current spell scriptable
     public int currentSpellSlotNumber;							                // Current spell index in array
-
     public Vector3 spellCastPositon;							                // Current spell index in array
 
+    [Header("Params")]
+	[Space]
     public GameObject mainCamera;							                    // Main Camera
     private SpellUIController spellUIController;							    // Spell UI Controller
     #endregion
@@ -53,31 +56,6 @@ public class SpellManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Player controls
-        // Cast a spell
-        if(Input.GetMouseButtonDown(0)){
-            CastCurrentSpell();
-        }
-        // Leave spell preview
-        if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && isPreviewingSpell){
-            isPreviewingSpell = false;
-            spellUIController.UI_PreviewSpellActivate(isPreviewingSpell);
-            currentSpell = null;
-        }
-        //Spell Shortcuts
-        if(Input.GetKeyDown(KeyCode.Alpha1)){
-            UpdatePlayerCurrentSpellByUI(0);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            UpdatePlayerCurrentSpellByUI(1);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            UpdatePlayerCurrentSpellByUI(2);
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4)){
-            UpdatePlayerCurrentSpellByUI(3);
-        }
-
         // Cooldown Management
         for(int spellCount = 0; spellCount<spellArray.Length; spellCount++)
         {
