@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MobScriptable
   baseHitPoints: 5
   damage: 3
-  speed: 0.75
+  speed: 1.25
   detectionRange: 3
   faction: PlayerMob
   attackableFactions:
@@ -28,6 +28,7 @@ MonoBehaviour:
   canMeleeAttack: 0
   canRangeAttack: 0
   canSummon: 0
+  isSelectable: 1
   summon: {fileID: 0}
   summoningRate: 0
   projectile: {fileID: 0}

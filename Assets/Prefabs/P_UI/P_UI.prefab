@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1335612018246931402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870426626816172876}
+  m_Layer: 0
+  m_Name: MousePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870426626816172876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335612018246931402}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3032599203331616809}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1727851117361486613
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7251427248364125676}
+  - component: {fileID: 1941565405312870535}
   m_Layer: 0
   m_Name: SelectionCollider
   m_TagString: Untagged
@@ -168,6 +200,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3032599203331616809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941565405312870535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051195054184281303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6831e658fd59ec041a3fe37806cbbdc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  selectedMobs: []
 --- !u!1 &3687301618682329023
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +347,7 @@ Transform:
   m_Children:
   - {fileID: 9096101236252950404}
   - {fileID: 7251427248364125676}
+  - {fileID: 870426626816172876}
   m_Father: {fileID: 6383581545734784358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5833429637634507367
@@ -353,7 +399,8 @@ MonoBehaviour:
   ui_playerLife: {fileID: 3621794398072078590}
   ui_gameOver: {fileID: 1727851117361486613}
   selectionLineRenderer: {fileID: 3944814714039961470}
-  selectionGameObject: {fileID: 3051195054184281303}
+  selectionColliderGameObject: {fileID: 3051195054184281303}
+  mousePositionGameObject: {fileID: 1335612018246931402}
 --- !u!1 &7086663912750152841
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +412,7 @@ GameObject:
   - component: {fileID: 9096101236252950404}
   - component: {fileID: 3944814714039961470}
   m_Layer: 0
-  m_Name: UI_MobSlectionBox
+  m_Name: Render_MobSlectionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

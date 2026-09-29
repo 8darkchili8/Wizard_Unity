@@ -22,8 +22,39 @@ public class MobDetectionController : MonoBehaviour
     // Mob detection trigger
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if((collider.gameObject.layer == LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction)) || mobController.mobCurrentTarget == null){
-            mobController.SetNewCurrentTarget(collider.gameObject);
+        foreach(string layerName in mobController.mobScriptable.attackableFactionsList)
+        {
+            // If new target is attackable
+            if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
+            {
+                if(mobController.mobCurrentTarget == null)
+                {
+                    mobController.SetNewCurrentTarget(collider.gameObject);
+                }
+                else if(
+                    // Check new target is priority layer
+                    (collider.gameObject.layer == LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction)) &&
+                    // Check if current target isn't already priority layer
+                    (mobController.mobCurrentTarget.layer != LayerMask.NameToLayer(mobController.mobScriptable.attackablePriorityFaction))
+                ){
+                    mobController.SetNewCurrentTarget(collider.gameObject);
+                }
+            }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if(mobController.isWaitingforTarget)
+        {
+            foreach(string layerName in mobController.mobScriptable.attackableFactionsList)
+            {
+                // If new target is attackable
+                if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
+                {
+                    mobController.SetNewCurrentTarget(collider.gameObject);
+                }
+            }
         }
     }
 }

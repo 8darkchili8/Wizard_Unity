@@ -20,6 +20,7 @@ public class MobController : MonoBehaviour
     [SerializeField] private bool isLookingAtTarget;					    // Is it looking at the player
     [SerializeField] private Collider2D detectionCollider;					// Mob detection collider
     public GameObject mobCurrentTarget;					                    // Target position
+    public Vector3 mobCurrentTargetPosition;					                    // Target position
 
     [Header("UI")]
 	[Space]
@@ -35,9 +36,9 @@ public class MobController : MonoBehaviour
     private GameObject spellManager;                                        // Spell manager GameObject
     private Transform ui_spellDamageCanvasTransform;                        // Spell damage canvas transform
     // State
-    private bool isMovingToMainTarget;                                      // Is mob moving towards its main target
-    private bool isMovingToSecondary;                                       // Is mob moving towards its secondary target
-    private bool isSelectedByPlayer;                                        // Is mob moving towards its secondary target
+    private bool isSelectedByPlayer;                                        // Is mob moving currenrtly selected by player
+    public bool isFollowingPlayerGoTo;                                      // Is mob currently moving towards player order
+    public bool isWaitingforTarget;                                         // Is mob waiting with no target
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,17 +67,23 @@ public class MobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(self.transform.position != playerGameObject.transform.position && mobScriptable.canMoveTowardsTarget)
+        // Check if Mob has target and sending him towards
+        if((mobCurrentTarget != null || mobCurrentTargetPosition != null) && mobScriptable.canMoveTowardsTarget)
         {
             GoToCurrentTarget();
         }
-        // Reseting player as taget if no target fo enemy Mobs
+        // Reseting player as target if no target for enemy Mobs
         if(mobScriptable.faction == "Enemy")
         {
             if(mobCurrentTarget == null)
             {
                 mobCurrentTarget = playerGameObject;
             }
+        }
+        // Setting waiting if player mob has no target
+        if(mobScriptable.faction == "PlayerMob")
+        {
+            isWaitingforTarget = (mobCurrentTarget == null);
         }
 
         if(isLookingAtTarget)
@@ -89,10 +96,18 @@ public class MobController : MonoBehaviour
     #region Managing mob movement
     private void GoToCurrentTarget()
     {   
-        // [TO UPDATE] only goes to player (causing error if no player)
-        if(mobCurrentTarget != null)
+        if(mobCurrentTarget != null && !isFollowingPlayerGoTo)      // Move towards given GameObject
         {
-            self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTarget.transform.position, mobScriptable.speed * Time.deltaTime);
+            var cleanMobCurrentTargetPosition = new Vector3(mobCurrentTarget.transform.position.x,mobCurrentTarget.transform.position.y,0);
+            //self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTarget.transform.position, mobScriptable.speed * Time.deltaTime);
+            self.transform.position = Vector3.MoveTowards(self.transform.position, cleanMobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
+            animator.SetTrigger("Moving");
+        }
+        else if(isFollowingPlayerGoTo)  //Move towards given positon
+        {
+            var cleanMobCurrentTargetPosition = new Vector3(mobCurrentTargetPosition.x,mobCurrentTargetPosition.y,0);
+            //self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
+            self.transform.position = Vector3.MoveTowards(self.transform.position, cleanMobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
             animator.SetTrigger("Moving");
         }
     }
@@ -100,6 +115,7 @@ public class MobController : MonoBehaviour
     public void SetNewCurrentTarget(GameObject newCurrentTarget)
     {
         mobCurrentTarget = newCurrentTarget;
+        isFollowingPlayerGoTo = false;
     }
 
     private void AimAtTarget(Vector3 targetPosition)
@@ -139,7 +155,7 @@ public class MobController : MonoBehaviour
     #endregion
 
     #region Managing mob selection
-    public void IsSelectedByPlayer(bool selected)
+    public void ActivateSelectedByPlayer(bool selected)
     {
         isSelectedByPlayer = selected;
 
@@ -153,9 +169,10 @@ public class MobController : MonoBehaviour
         }
     }
 
-    public void OrderTargetChange(Transform newCurrentTarget)
+    public void SetNewCurrentTargetTransform(Vector3 targetPosition)
     {
-        //SetNewCurrentTarget();
+        isFollowingPlayerGoTo = true;
+        mobCurrentTargetPosition = targetPosition;
     }
     #endregion
 

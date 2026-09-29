@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     
     // Mob selection params
     public bool isSelecting;
-    public bool hasSelection;
     public BoxCollider2D selectionBoxCollider;
     public List<GameObject> selectedMobs;
 
@@ -28,9 +27,9 @@ public class PlayerController : MonoBehaviour
         // Player controls
         
         #region Mob selection controls
-        if(!hasSelection && !spellManager.isPreviewingSpell)
+        if(!spellManager.isPreviewingSpell)
         {
-            if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && (isSelecting || hasSelection))
+            if((Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)) && isSelecting)
             {
                 // Cancel selection
                 selectedMobs =  new List<GameObject>();
@@ -46,10 +45,16 @@ public class PlayerController : MonoBehaviour
                 // Update mob selection
                 MobSelection();
             }
-            if(Input.GetMouseButtonUp(0))
+            if(Input.GetMouseButtonUp(0) && isSelecting)
             {
                 ExectuteMobSelection();
             }
+            if(Input.GetMouseButtonDown(1) && !isSelecting && selectedMobs.Count != 0)
+            {
+                // Oder select mobs to move to point
+                OrderMobNewTarget();
+            }
+        
         }
 
         #endregion
@@ -107,26 +112,32 @@ public class PlayerController : MonoBehaviour
     private void ExectuteMobSelection()
     {
         selectedMobs = uiController.UI_ReturnMobSelection();
-        Debug.Log("----" + selectedMobs.Count);
         foreach(GameObject selectedMob in selectedMobs)
         {
-            selectedMob.GetComponent<MobController>().IsSelectedByPlayer(true);
+            selectedMob.GetComponent<MobController>().ActivateSelectedByPlayer(true);
         }
         isSelecting = false;
         LeaveMobSelection();
         // [TO DO] if result given, else, leave selection
-        //hasSelection = true;
+
     }
 
     private void LeaveMobSelection()
     {
         isSelecting = false;
-        hasSelection = false;
         foreach(GameObject selectedMob in selectedMobs)
         {
-            selectedMob.GetComponent<MobController>().IsSelectedByPlayer(false);
+            selectedMob.GetComponent<MobController>().ActivateSelectedByPlayer(false);
         }
         uiController.UI_LeaveMobSelection();
+    }
+
+    private void OrderMobNewTarget()
+    {   
+        foreach(GameObject selectedMob in selectedMobs)
+        {
+            selectedMob.GetComponent<MobController>().SetNewCurrentTargetTransform(uiController.GetMousePositionGameObject());
+        }
     }
     #endregion
 }

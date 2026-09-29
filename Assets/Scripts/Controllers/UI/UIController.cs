@@ -12,7 +12,8 @@ public class UIController : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI ui_playerLife;                     // Player Life
 	[SerializeField] private GameObject ui_gameOver;                            // Game Over
     [SerializeField] private LineRenderer selectionLineRenderer;                // Line renderer for mob selection
-    [SerializeField] private GameObject selectionGameObject;                    // Line renderer for mob selection
+    [SerializeField] private GameObject selectionColliderGameObject;            // Selection collider GameObject
+    [SerializeField] private GameObject mousePositionGameObject;               // Line renderer for mob selection
 
     private GameObject playerGameObject;                                        //Player GameObject
     private PlayerController playerController;                                  //Player Controller
@@ -61,7 +62,7 @@ public class UIController : MonoBehaviour
         selectionLineRenderer.SetPosition(2, new Vector2(initialMousePosition.x, initialMousePosition.y));
         selectionLineRenderer.SetPosition(3, new Vector2(initialMousePosition.x, initialMousePosition.y));
 
-        playerController.selectionBoxCollider = selectionGameObject.AddComponent<BoxCollider2D>();
+        playerController.selectionBoxCollider = selectionColliderGameObject.AddComponent<BoxCollider2D>();
         playerController.selectionBoxCollider.isTrigger = true;
         playerController.selectionBoxCollider.offset = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
@@ -75,7 +76,7 @@ public class UIController : MonoBehaviour
         selectionLineRenderer.SetPosition(2, new Vector2(currentMousePosition.x, currentMousePosition.y));
         selectionLineRenderer.SetPosition(3, new Vector2(currentMousePosition.x, initialMousePosition.y));
 
-        selectionGameObject.transform.position = (currentMousePosition + initialMousePosition) / 2;
+        selectionColliderGameObject.transform.position = (currentMousePosition + initialMousePosition) / 2;
 
         playerController.selectionBoxCollider.size = new Vector2(
             Mathf.Abs(initialMousePosition.x - currentMousePosition.x),
@@ -85,7 +86,7 @@ public class UIController : MonoBehaviour
 
     public List<GameObject> UI_ReturnMobSelection()
     {
-        var selectedMobs = selectionGameObject.GetComponent<SelectionColliderController>().ReturnSelectedMobs();
+        var selectedMobs = selectionColliderGameObject.GetComponent<SelectionColliderController>().ReturnSelectedMobs();
         return selectedMobs;
     }
 
@@ -94,6 +95,12 @@ public class UIController : MonoBehaviour
         selectionLineRenderer.positionCount = 0;
         Destroy(playerController.selectionBoxCollider);
         transform.position = Vector3.zero;
+    }
+
+    public Vector3 GetMousePositionGameObject()
+    {
+        mousePositionGameObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
     #endregion
 }

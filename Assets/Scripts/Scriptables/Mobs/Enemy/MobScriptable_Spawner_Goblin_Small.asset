@@ -29,6 +29,7 @@ MonoBehaviour:
   canMeleeAttack: 0
   canRangeAttack: 0
   canSummon: 1
+  isSelectable: 0
   summon: {fileID: 5128466262189111517, guid: ccdb9f6121bae574c94296d2946051b9, type: 3}
   summoningRate: 5
   projectile: {fileID: 0}
