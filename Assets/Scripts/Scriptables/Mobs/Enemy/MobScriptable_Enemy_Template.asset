@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1fa44ea37381534ebad022a1fab4185, type: 3}
-  m_Name: MobScriptable_Spawner_Goblin_Small
+  m_Name: MobScriptable_Enemy_Template
   m_EditorClassIdentifier: Assembly-CSharp::MobScriptable
-  baseHitPoints: 10
+  baseHitPoints: 3
   damage: 3
-  speed: 0
+  speed: 0.5
   detectionRange: 3
   faction: Enemy
   attackableFactions:
@@ -25,12 +25,12 @@ MonoBehaviour:
   - PlayerMob
   attackablePriorityFaction: PlayerMob
   isPlayerMainTarget: 0
-  canMoveTowardsTarget: 0
+  canMoveTowardsTarget: 1
   canMeleeAttack: 0
   canRangeAttack: 0
-  canSummon: 1
+  canSummon: 0
   isSelectable: 0
-  summon: {fileID: 5128466262189111517, guid: ccdb9f6121bae574c94296d2946051b9, type: 3}
-  summoningRate: 5
+  summon: {fileID: 0}
+  summoningRate: 0
   projectile: {fileID: 0}
   rangeAttackRate: 0
