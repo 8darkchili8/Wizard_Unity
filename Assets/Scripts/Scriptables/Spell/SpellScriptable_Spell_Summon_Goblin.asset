@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4431d7291e8393d4f9327c2cb80c6fc8, type: 3}
   m_Name: SpellScriptable_Spell_Summon_Goblin
   m_EditorClassIdentifier: Assembly-CSharp::SpellScriptable
-  spellName: Fire hex 3
+  spellName: Summon Goblin
   spellDamage: 0
   spellCooldown: 1
   castingSpeed: 1
