@@ -83,11 +83,16 @@ public class SpellUIController : MonoBehaviour
         int minutes = Mathf.FloorToInt(time/60);
         int seconds = Mathf.FloorToInt(time - minutes * 60f);
 
-        string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        string textTime = string.Format("{0:0}:{1:00}", minutes, seconds+1);
         if(time > 0)
         {
             ui_spellSliderArray[spellSlotNumber].GetComponentInChildren<TextMeshProUGUI>().text = textTime;
             ui_spellSliderArray[spellSlotNumber].GetComponent<Slider>().value = time;
+            ui_spellSliderArray[spellSlotNumber].SetActive(true);
+        }
+        else
+        {
+            ui_spellSliderArray[spellSlotNumber].SetActive(false);
         }
     }
 }

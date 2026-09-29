@@ -36,7 +36,7 @@ public class SelectionColliderController : MonoBehaviour
     // Adds units entering the collider in the list
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        // Mob selection
+        // Mob selection (Enemy and PlayerMob)
         if (!selectedMobs.Contains(collider.gameObject) && (collider.gameObject.layer == LayerMask.NameToLayer("Enemy") || collider.gameObject.layer == LayerMask.NameToLayer("PlayerMob")))
         {   
             if(collider.gameObject.GetComponent<MobController>().mobScriptable.isSelectable)

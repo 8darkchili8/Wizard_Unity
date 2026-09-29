@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SpellScriptable", menuName = "Scriptable Objects/SpellScriptable")]
 public class SpellScriptable : ScriptableObject
@@ -14,6 +16,7 @@ public class SpellScriptable : ScriptableObject
     public float castingSpeed;                              // Spell loading time
     public bool isTargetingOnlyInside;                      // Are tagets forgotten once they step out of the hex
     public LayerMask targetable;							// View
+    public List<string> attackableFactionsList;				// List of attackable factinos
     [Header("Summon")]
 	[Space]
     public bool isSpellSummoning;                           // Is the spell summoning GO 

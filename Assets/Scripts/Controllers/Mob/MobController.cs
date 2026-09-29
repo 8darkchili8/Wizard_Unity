@@ -99,14 +99,12 @@ public class MobController : MonoBehaviour
         if(mobCurrentTarget != null && !isFollowingPlayerGoTo)      // Move towards given GameObject
         {
             var cleanMobCurrentTargetPosition = new Vector3(mobCurrentTarget.transform.position.x,mobCurrentTarget.transform.position.y,0);
-            //self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTarget.transform.position, mobScriptable.speed * Time.deltaTime);
             self.transform.position = Vector3.MoveTowards(self.transform.position, cleanMobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
             animator.SetTrigger("Moving");
         }
-        else if(isFollowingPlayerGoTo)  //Move towards given positon
+        else if(isFollowingPlayerGoTo)                              //Move towards given positon
         {
             var cleanMobCurrentTargetPosition = new Vector3(mobCurrentTargetPosition.x,mobCurrentTargetPosition.y,0);
-            //self.transform.position = Vector3.MoveTowards(self.transform.position, mobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
             self.transform.position = Vector3.MoveTowards(self.transform.position, cleanMobCurrentTargetPosition, mobScriptable.speed * Time.deltaTime);
             animator.SetTrigger("Moving");
         }

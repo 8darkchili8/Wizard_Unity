@@ -20,6 +20,8 @@ MonoBehaviour:
   targetable:
     serializedVersion: 2
     m_Bits: 640
+  attackableFactionsList:
+  - Enemy
   isSpellSummoning: 0
   spellSummon: {fileID: 0}
   spellSummonNumber: 0

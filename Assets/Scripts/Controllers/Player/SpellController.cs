@@ -74,13 +74,19 @@ public class SpellController : MonoBehaviour
     // Adds units entering the collider in the list
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!targetList.Contains(collider.gameObject) && collider.gameObject.layer == 7)
+        if(!targetList.Contains(collider.gameObject))
         {
-            targetList.Add(collider.gameObject);
+            foreach(string layerName in spellScriptable.attackableFactionsList)
+            {
+                if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
+                {
+                    targetList.Add(collider.gameObject);
+                }
+            }
         }
     }
 
-    // Removes units exiting the collider grom the list
+    // Removes units exiting the collider from the list
     public void OnTriggerExit2D(Collider2D collider)
     {
         if(targetList.Contains(collider.gameObject) && spellScriptable.isTargetingOnlyInside)
