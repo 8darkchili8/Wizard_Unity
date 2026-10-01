@@ -36,12 +36,12 @@ public class MobSpawnerController : MonoBehaviour
     private void SpawnEnemy()
     {
         Instantiate(enemy,self.transform.position,Quaternion.identity);
-        isInCoolDown = true;
         StartCoroutine(CollingDown());
     }
 
     private IEnumerator CollingDown()
 	{
+        isInCoolDown = true;
         int spawnrate = Mathf.RoundToInt(Random.Range(spawnrateMin,spawnrateMax));
         yield return new WaitForSeconds(spawnrate);
         isInCoolDown = false;

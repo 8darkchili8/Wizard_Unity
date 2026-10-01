@@ -212,7 +212,6 @@ public class MobController : MonoBehaviour
             {
                 if(!isChilled && !isIced)
                 {
-                    Debug.Log("----1");
                     mobCurrentSpeed -= mobScriptable.chillSpeedMalus; 
                     isChilled = isApplied;
                     yield return new WaitForSeconds(mobScriptable.chillMalusTime);
@@ -220,14 +219,12 @@ public class MobController : MonoBehaviour
                 }
                 else if(!isIced)
                 {
-                    Debug.Log("----2");
                     StartCoroutine(ApplyStatusIce(true));
                     StartCoroutine(ApplyStatusChill(false));
                 }
             }
             else if(!isApplied && isChilled)
             {
-                Debug.Log("----3");
                 mobCurrentSpeed += mobScriptable.chillSpeedMalus;
                 isChilled = isApplied;
             }
