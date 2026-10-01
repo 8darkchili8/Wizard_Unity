@@ -45,6 +45,7 @@ public class SpellController : MonoBehaviour
         if(spellScriptable.spellDamage > 0)
         {
             ApplySpellDamage();
+            ApplySpellStatus();
         }
         // Summon
         if(spellScriptable.isSpellSummoning)
@@ -62,6 +63,15 @@ public class SpellController : MonoBehaviour
         {
             MobController mobController = target.GetComponent<MobController>();
             mobController.TakeHit(spellScriptable.spellDamage);
+        }
+    }
+
+    private void ApplySpellStatus()
+    {
+        foreach(GameObject target in targetList.ToList())
+        {
+            MobController mobController = target.GetComponent<MobController>();
+            mobController.ApplyStatusList(spellScriptable.statusList);
         }
     }
 

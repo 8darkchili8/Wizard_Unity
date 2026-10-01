@@ -12,11 +12,18 @@ public class MobScriptable : ScriptableObject
 	public float speed = 3f;								// Move speed
 	public float detectionRange = 3f;						// Detection range
 
+    [Header("Status")]
+    [Space]
+    public List<string> statusImmunityList;
+    public float chillSpeedMalus = 0.25f;                   // Speed malus when the mob is chilled
+    public float chillMalusTime = 3f;                    // Time the chill debugg is applied
+    public float iceMalusTime = 3f;                    // Time the chill debugg is applied
+
     [Header("Faction")]
     [Space]
     public string faction;                                  // Faction of the mob
     public LayerMask attackableFactions;                    // Faction the mob can target
-    public List<string> attackableFactionsList;                    // Faction the mob can target
+    public List<string> attackableFactionsList;             // Faction the mob can target
     public string attackablePriorityFaction;                // Faction the mob targets in priority
 
     [Header("Behaviors")]
@@ -27,6 +34,8 @@ public class MobScriptable : ScriptableObject
     public bool canRangeAttack;     				    // Can it attack at range
     public bool canSummon;                              // Can it summon
     public bool isSelectable;                           // Is it selectable by player
+
+
 
     [Header("Summons")]
 	[Space]

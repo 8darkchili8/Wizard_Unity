@@ -17,6 +17,11 @@ public class SpellScriptable : ScriptableObject
     public bool isTargetingOnlyInside;                      // Are tagets forgotten once they step out of the hex
     public LayerMask targetable;							// View
     public List<string> attackableFactionsList;				// List of attackable factinos
+
+    [Header("Status")]
+	[Space]
+    public List<string> statusList;                         // Status applied by the spell
+
     [Header("Summon")]
 	[Space]
     public bool isSpellSummoning;                           // Is the spell summoning GO 

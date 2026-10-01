@@ -22,6 +22,8 @@ MonoBehaviour:
     m_Bits: 640
   attackableFactionsList:
   - Enemy
+  statusList:
+  - Chill
   isSpellSummoning: 0
   spellSummon: {fileID: 0}
   spellSummonNumber: 0

@@ -16,6 +16,8 @@ MonoBehaviour:
   damage: 3
   speed: 0.25
   detectionRange: 3
+  statusImmunityList:
+  - Chill
   faction: Enemy
   attackableFactions:
     serializedVersion: 2
@@ -29,6 +31,7 @@ MonoBehaviour:
   canMeleeAttack: 0
   canRangeAttack: 0
   canSummon: 0
+  isSelectable: 0
   summon: {fileID: 0}
   summoningRate: 0
   projectile: {fileID: 0}

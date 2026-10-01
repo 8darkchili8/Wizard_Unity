@@ -16,6 +16,9 @@ MonoBehaviour:
   damage: 3
   speed: 0.5
   detectionRange: 3
+  statusImmunityList: []
+  chillSpeedMalus: 1
+  chillMalusTime: 1
   faction: Enemy
   attackableFactions:
     serializedVersion: 2
