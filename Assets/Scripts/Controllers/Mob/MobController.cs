@@ -201,7 +201,7 @@ public class MobController : MonoBehaviour
                 break;
         }
     }
-    //yield return new WaitForSeconds(spellScriptable.castingSpeed);
+
     public IEnumerator ApplyStatusChill(bool isApplied)
     {
         // Check if Mob is immune

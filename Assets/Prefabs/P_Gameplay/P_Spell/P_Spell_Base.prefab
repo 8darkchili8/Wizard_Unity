@@ -48,6 +48,7 @@ MonoBehaviour:
   spellScriptable: {fileID: 11400000, guid: 30382348fcfe5b64f91b4751ff2c81c7, type: 2}
   self: {fileID: 3738075976749043117}
   view: {fileID: 2350208447079971865}
+  spellCollider: {fileID: 1676213485281731739}
 --- !u!58 &1676213485281731739
 CircleCollider2D:
   m_ObjectHideFlags: 0

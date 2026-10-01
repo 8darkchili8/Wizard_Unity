@@ -13,6 +13,7 @@ public class SpellController : MonoBehaviour
 	[Space]
     [SerializeField] private GameObject self;							        // Self
     [SerializeField] private GameObject view;							        // View
+    [SerializeField] private CircleCollider2D spellCollider;				    // Collider
 
     private List<GameObject> targetList = new List<GameObject>();
 
@@ -77,7 +78,23 @@ public class SpellController : MonoBehaviour
 
     private void Summon()
     {
-        Instantiate(spellScriptable.spellSummon,gameObject.transform.position,Quaternion.identity);
+        if(spellScriptable.spellSummonNumber == 1)
+        {
+            Instantiate(spellScriptable.spellSummon,gameObject.transform.position,Quaternion.identity);
+        }
+        else
+        {
+            for(int summonCount = 1;summonCount<=spellScriptable.spellSummonNumber;summonCount++)
+            {
+                // Give random spawn position based on spell radius
+                var spawnPosition = (
+                    new Vector3(Mathf.RoundToInt(Random.Range(0,spellCollider.radius)),Mathf.RoundToInt(Random.Range(0,spellCollider.radius)),0)
+                    + gameObject.transform.position
+                );
+                Debug.Log(spawnPosition);
+                Instantiate(spellScriptable.spellSummon,spawnPosition,Quaternion.identity);
+            } 
+        }
     }
 
     #region Setting spell targets

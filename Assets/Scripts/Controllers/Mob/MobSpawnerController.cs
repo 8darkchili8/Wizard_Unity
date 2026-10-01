@@ -6,6 +6,8 @@ public class MobSpawnerController : MonoBehaviour
 {
     [Header("Stats")]
 	[Space]
+    //[SerializeField] private int spawnNumberMin = 5;						    // Minimun enemy spawned
+    //[SerializeField] private int spawnNumbeMax = 5;						        // Maximum enemy spawned
     [SerializeField] private int spawnrateMin = 5;						        // Enemy spawn rate min
     [SerializeField] private int spawnrateMax = 5;						        // Enemy spawn rate max
 
