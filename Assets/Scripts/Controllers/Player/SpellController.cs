@@ -66,8 +66,7 @@ public class SpellController : MonoBehaviour
     {
         foreach(GameObject target in targetList.ToList())
         {
-            MobController mobController = target.GetComponent<MobController>();
-            mobController.TakeHit(spellScriptable.spellDamage);
+            target.GetComponent<MobController>().TakeHit(spellScriptable.spellDamage);
         }
     }
 
@@ -75,8 +74,7 @@ public class SpellController : MonoBehaviour
     {
         foreach(GameObject target in targetList.ToList())
         {
-            MobController mobController = target.GetComponent<MobController>();
-            mobController.ApplyStatusList(spellScriptable.statusList);
+            target.GetComponent<MobController>().mobStatus.ApplyStatusList(spellScriptable.statusList);
         }
     }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpellScriptable
   spellName: Charm
   spellDamage: 0
-  spellCooldown: 3
+  spellCooldown: 1
   castingSpeed: 3
   isTargetingOnlyInside: 1
   attackableFactionsList:

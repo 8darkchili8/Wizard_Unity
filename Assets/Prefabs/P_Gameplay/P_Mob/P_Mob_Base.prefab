@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115220572429464724}
   - component: {fileID: 7993832438888257498}
+  - component: {fileID: 2180086990772072734}
   - component: {fileID: 5367114549191312112}
   - component: {fileID: 1195795316965649682}
   m_Layer: 7
@@ -151,6 +152,7 @@ MonoBehaviour:
   self: {fileID: 3536408185405376462}
   view: {fileID: 7367567930353853258}
   animator: {fileID: 6142321520945210073}
+  mobStatus: {fileID: 0}
   detectionCollider: {fileID: 5268998628183337797}
   isFlippingY: 1
   isLookingAtTarget: 0
@@ -158,16 +160,31 @@ MonoBehaviour:
   isInAttackCooldown: 0
   mobCurrentTarget: {fileID: 0}
   mobCurrentTargetPosition: {x: 0, y: 0, z: 0}
+  uiTextDamageLocation: {fileID: 1510798439098068989}
+  uiDamageVFX: {fileID: 6749581266623968882, guid: cb8e2aa38d121aa488b0f7493dd78d45, type: 3}
+  isFollowingPlayerGoTo: 0
+  isWaitingforTarget: 0
+--- !u!114 &2180086990772072734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3794857802778057532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a544da831170d74eb7ee152990d133c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  mobController: {fileID: 0}
   isChilled: 0
   isIced: 0
   isCharmed: 0
   charmedAttackableFactions:
     serializedVersion: 2
     m_Bits: 128
-  uiTextDamageLocation: {fileID: 1510798439098068989}
-  uiDamageVFX: {fileID: 6749581266623968882, guid: cb8e2aa38d121aa488b0f7493dd78d45, type: 3}
-  isFollowingPlayerGoTo: 0
-  isWaitingforTarget: 0
+  charmedAttackableFactionsList:
+  - Enemy
 --- !u!70 &5367114549191312112
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

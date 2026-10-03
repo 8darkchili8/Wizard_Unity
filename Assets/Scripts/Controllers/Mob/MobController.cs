@@ -16,27 +16,17 @@ public class MobController : MonoBehaviour
 
     [Header("Params")]
 	[Space]
-    [SerializeField] private GameObject self;							    // Self
+    public GameObject self;							                        // Self
     [SerializeField] private GameObject view;							    // View
     [SerializeField] private Animator animator;							    // Animator
-    [SerializeField] private GameObject detectionCollider;					// Mob detection collider
+    public MobStatusController mobStatus;							    // Animator
+    public GameObject detectionCollider;					                // Mob detection collider
     [SerializeField] private bool isFlippingY;							    // Does its view needs to be flipped
     [SerializeField] private bool isLookingAtTarget;					    // Is it looking at the player
     public bool isSelectableByPlayer = false;					            // Can the mob be selected by player
     public bool isInAttackCooldown;					                        // Is Mob in attack cooldown
     public GameObject mobCurrentTarget;					                    // Target gameobject
     public Vector3 mobCurrentTargetPosition;					            // Target position
-
-    [Header("Status")]
-	[Space]
-    public bool isChilled;                                                  // Is Mob chilled
-    public bool isIced;                                                     // Is Mob iced
-    public bool isCharmed;                                                  // Is Mob iced
-
-    [Header("Status params")]
-	[Space]
-    public  LayerMask charmedAttackableFactions;                             // Attackable factions when a mob is charmed
-    private List<string> charmedAttackableFactionsList = new List<string>();  // Attackable factions list when a mob is charmed
 
     [Header("UI")]
 	[Space]
@@ -67,7 +57,9 @@ public class MobController : MonoBehaviour
         {
             mobCurrentTarget = playerGameObject;
         }
-        charmedAttackableFactionsList.Add("Enemy");
+
+        // Setting up status management
+        mobStatus = gameObject.GetComponent<MobStatusController>();
 
         // Setting up damage display
         spellManager = GameObject.FindWithTag("SpellManager");
@@ -171,150 +163,6 @@ public class MobController : MonoBehaviour
     }
     #endregion
 
-    #region Mob status management
-    public bool GetMobStatusImmunity(string status)
-    {
-        var isImmune = false;
-        foreach(string statusImmunity in mobScriptable.statusImmunityList)
-        {
-            if(statusImmunity == status)
-            {
-                isImmune =  true;
-            } 
-        }
-        return isImmune;
-    }
-
-    public void ApplyStatusList(List<string> statusList, bool isApplied = true)
-    {
-        foreach(string status in statusList)
-        {
-            ApplyStatus(status, isApplied);
-        }
-    }
-
-    public void ApplyStatus(string status, bool isApplied)
-    {
-        if(!GetMobStatusImmunity("Chill"))
-        {
-            switch(status)
-            {
-                case "Chill":
-                    StartCoroutine(ApplyStatusChill(isApplied));
-                    break;
-                case "Ice":
-                    StartCoroutine(ApplyStatusIce(isApplied));
-                    break;
-                case "Charm":
-                    StartCoroutine(ApplyStatusCharm(isApplied));
-                    break;
-                default:
-                    break;
-            }   
-        }
-    }
-
-    public IEnumerator ApplyStatusChill(bool isApplied)
-    {
-        // Check if Mob is immune
-        if(!GetMobStatusImmunity("Chill")) 
-        {
-            if(isApplied)
-            {
-                if(!isChilled && !isIced)
-                {
-                    mobCurrentSpeed -= mobScriptable.chillSpeedMalus; 
-                    isChilled = isApplied;
-                    yield return new WaitForSeconds(mobScriptable.chillMalusTime);
-                    StartCoroutine(ApplyStatusChill(false));
-                }
-                else if(!isIced)
-                {
-                    StartCoroutine(ApplyStatusIce(true));
-                    StartCoroutine(ApplyStatusChill(false));
-                }
-            }
-            else if(!isApplied && isChilled)
-            {
-                mobCurrentSpeed += mobScriptable.chillSpeedMalus;
-                isChilled = isApplied;
-            }
-        }
-    }
-
-    public IEnumerator ApplyStatusIce(bool isApplied)
-    {
-        // Check if Mob is immune
-        if(!GetMobStatusImmunity("Ice"))
-        {
-            if(isApplied)
-            {
-                if(!isIced)
-                {
-                    mobCurrentSpeed -= 999; 
-                    isIced = isApplied;
-                    yield return new WaitForSeconds(mobScriptable.iceMalusTime);
-                    StartCoroutine(ApplyStatusIce(false));
-                }
-            }
-            else if(!isApplied && isIced)
-            {
-                mobCurrentSpeed += 999;
-                isIced = isApplied;
-            }
-        }
-    }
-
-    public IEnumerator ApplyStatusCharm(bool isApplied)
-    {
-        // Attackable priority
-
-        // Check if Mob is immune
-        if(!GetMobStatusImmunity("Charm"))
-        {
-            var children = self.GetComponentsInChildren<Transform>(includeInactive: true);
-            if(isApplied)
-            {  
-                if(!isCharmed)
-                {
-                    foreach (Transform child in children)
-                    {
-                        if(child.gameObject.name != "DetectionCollider")
-                        {
-                            child.gameObject.layer = LayerMask.NameToLayer("PlayerMob");
-                        }
-                    }
-                    isCharmed = isApplied;
-                    mobCurrentTarget = null;
-                    isSelectableByPlayer = true;
-                    LayerMask layerMask = LayerMask.NameToLayer("Enemy");
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobPriorityAttackFaction("Enemy");
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobDetectionColliderLayer(charmedAttackableFactions);
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobAttackableFactionList(charmedAttackableFactionsList);
-                    yield return new WaitForSeconds(mobScriptable.charmMalusTime);
-                    StartCoroutine(ApplyStatusCharm(false));
-                }
-            }
-            else if(!isApplied && isCharmed)
-            {
-                foreach (Transform child in children)
-                {
-                    if(child.gameObject.name != "DetectionCollider")
-                    {
-                        child.gameObject.layer = LayerMask.NameToLayer("Enemy");
-                    }
-                    isCharmed = isApplied;
-                    isFollowingPlayerGoTo = false;
-                    isSelectableByPlayer = false;
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobPriorityAttackFaction(mobScriptable.attackablePriorityFaction);
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobDetectionColliderLayer(mobScriptable.attackableFactionsLayer);
-                    detectionCollider.GetComponent<MobDetectionController>().SetMobAttackableFactionList(mobScriptable.attackableFactionsList);
-                }
-            }
-        }
-    }
-    #endregion
-
     #region Managing mob selection
     public void ActivateSelectedByPlayer(bool selected)
     {
@@ -341,7 +189,7 @@ public class MobController : MonoBehaviour
     // Mob attack trigger
     private IEnumerator OnTriggerStay2D(Collider2D collider)
     {
-        var factionList = isCharmed ? charmedAttackableFactionsList : mobScriptable.attackableFactionsList;
+        var factionList = mobStatus.isCharmed ? mobStatus.charmedAttackableFactionsList : mobScriptable.attackableFactionsList;
         foreach(string faction in factionList)
         {
             if(collider.gameObject.layer == LayerMask.NameToLayer(faction) && !isInAttackCooldown)
