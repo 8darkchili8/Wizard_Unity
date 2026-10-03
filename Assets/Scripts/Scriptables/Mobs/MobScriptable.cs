@@ -11,6 +11,7 @@ public class MobScriptable : ScriptableObject
 	public int damage = 5;							        // Damage delt by the enemy
 	public float speed = 3f;								// Move speed
 	public float detectionRange = 3f;						// Detection range
+	public float meleeAttackCooldown = 3f;				    // Melee attack cooldown
 
     [Header("Status")]
     [Space]

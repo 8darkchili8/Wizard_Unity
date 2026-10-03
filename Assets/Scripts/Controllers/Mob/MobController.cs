@@ -22,7 +22,8 @@ public class MobController : MonoBehaviour
     [SerializeField] private bool isFlippingY;							    // Does its view needs to be flipped
     [SerializeField] private bool isLookingAtTarget;					    // Is it looking at the player
     [SerializeField] private Collider2D detectionCollider;					// Mob detection collider
-    public GameObject mobCurrentTarget;					                    // Target position
+    public bool isInAttackCooldown;					                        // Is Mob in attack cooldown
+    public GameObject mobCurrentTarget;					                    // Target gameobject
     public Vector3 mobCurrentTargetPosition;					            // Target position
 
     [Header("Status")]
@@ -275,17 +276,27 @@ public class MobController : MonoBehaviour
     }
     #endregion
 
+    #region Manage mob attack
     // Mob attack trigger
-    private void OnTriggerEnter2D(Collider2D collider)
+    private IEnumerator OnTriggerStay2D(Collider2D collider)
     {
         foreach(string layerName in mobScriptable.attackableFactionsList)
         {
-            if(collider.gameObject.layer == LayerMask.NameToLayer(layerName))
+            if(collider.gameObject.layer == LayerMask.NameToLayer(layerName) && !isInAttackCooldown)
             {
                 collider.GetComponent<MobController>().TakeHit(mobScriptable.damage);
+                isInAttackCooldown = true;
+                yield return new WaitForSeconds(mobScriptable.meleeAttackCooldown);
+                ResetMobAttackCooldown();
             }
         }
+    }	
+
+    private void ResetMobAttackCooldown()
+    {
+        isInAttackCooldown = false;
     }
+    #endregion
 
     #region Managing VFX
     public void UI_DisplayDamage(int damage)

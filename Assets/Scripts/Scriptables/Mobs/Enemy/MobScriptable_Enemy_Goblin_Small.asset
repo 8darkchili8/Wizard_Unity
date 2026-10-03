@@ -16,6 +16,7 @@ MonoBehaviour:
   damage: 3
   speed: 0.5
   detectionRange: 3
+  meleeAttackCooldown: 3
   statusImmunityList: []
   chillSpeedMalus: 0.25
   chillMalusTime: 3
