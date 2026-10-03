@@ -11,7 +11,7 @@ public class SpellUIController : MonoBehaviour
 	[Space]
     [SerializeField] private GameObject[] ui_spellButtonArray;
 	[SerializeField] private GameObject[] ui_spellSliderArray;
-
+	[SerializeField] private GameObject ui_spellTooltip;
 	[SerializeField] private GameObject ui_spellPreview;
 
     [Header("Params")]
@@ -27,16 +27,17 @@ public class SpellUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(spellManager.isPreviewingSpell)
-        {
-            UI_PreviewSpellTrack();
-        }
-
         // Update cooldown visual
         var spellCountBase = 0;
         for(int spellCount = spellCountBase; spellCount < spellManager.spellArray.Length; spellCount++)
         {
             UI_UpdateSpellCooldownSlider(spellCount);
+        }
+
+        // Update spell preview position
+        if(spellManager.isPreviewingSpell)
+        {
+            ui_spellPreview.transform.position = UI_GetMousePosition();
         }
     }
 
@@ -57,13 +58,14 @@ public class SpellUIController : MonoBehaviour
         ui_spellPreview.SetActive(activating);
     }
 
-    public void UI_PreviewSpellTrack()
+    public Vector3 UI_GetMousePosition()
     {
         var screenPos = Input.mousePosition;
         var worldPos = spellManager.mainCamera.GetComponent<Camera>().ScreenToWorldPoint(screenPos);
-        ui_spellPreview.transform.position = new Vector3(worldPos.x, worldPos.y, 0);
+        return new Vector3(worldPos.x, worldPos.y, 0);
     }
 
+    #region Manage spell cooldown
     public void UI_UpdateSpellCooldownButton(int spellSlotNumber, bool activating)
     {
         if(activating)
@@ -95,4 +97,47 @@ public class SpellUIController : MonoBehaviour
             ui_spellSliderArray[spellSlotNumber].SetActive(false);
         }
     }
+    #endregion
+
+    #region Manage spell tooltip
+    public void UI_ActivateSpellTooltip(int spellSlotNumber)
+    {
+        var tooltipText = "";
+        ui_spellTooltip.SetActive(true);
+        if(spellManager.spellArray[spellSlotNumber].spellDamage > 0)
+        {
+            tooltipText += "Damage(s) : " + spellManager.spellArray[spellSlotNumber].spellDamage + "\n";
+        }
+        if(spellManager.spellArray[spellSlotNumber].statusList.Count > 0)
+        {
+            tooltipText += "Effect -:";
+            foreach(string status in spellManager.spellArray[spellSlotNumber].statusList)
+            {
+                tooltipText+= status + " ";
+            }
+            tooltipText += "\n";
+        }
+        if(spellManager.spellArray[spellSlotNumber].isSpellSummoning)
+        {
+            tooltipText += "Summoning : " + spellManager.spellArray[spellSlotNumber].spellSummonNumber + "\n";
+        }
+        if(spellManager.spellArray[spellSlotNumber].attackableFactionsList.Count > 0)
+        {
+            tooltipText += "Target(s) : ";
+            foreach(string target in spellManager.spellArray[spellSlotNumber].attackableFactionsList)
+            {
+                tooltipText+= target + " ";
+            }
+        }
+        tooltipText += "\n";
+        ui_spellTooltip.SetActive(true);
+        ui_spellTooltip.GetComponentInChildren<TextMeshProUGUI>().text = tooltipText;
+    }
+
+    public void UI_DeactivateSpellTooltip()
+    {
+        ui_spellTooltip.SetActive(false);
+        ui_spellTooltip.GetComponentInChildren<TextMeshProUGUI>().text = "";
+    }
+    #endregion
 }

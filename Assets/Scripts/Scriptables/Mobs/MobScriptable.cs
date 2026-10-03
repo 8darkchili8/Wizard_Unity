@@ -16,8 +16,8 @@ public class MobScriptable : ScriptableObject
     [Space]
     public List<string> statusImmunityList;
     public float chillSpeedMalus = 0.25f;                   // Speed malus when the mob is chilled
-    public float chillMalusTime = 3f;                    // Time the chill debugg is applied
-    public float iceMalusTime = 3f;                    // Time the chill debugg is applied
+    public float chillMalusTime = 3f;                       // Time the chill debuff is applied
+    public float iceMalusTime = 3f;                         // Time the ice debuff is applied
 
     [Header("Faction")]
     [Space]

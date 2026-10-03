@@ -15,7 +15,6 @@ public class SpellScriptable : ScriptableObject
     public float spellCooldown = 3f;				    	// Spell cooldown
     public float castingSpeed;                              // Spell loading time
     public bool isTargetingOnlyInside;                      // Are tagets forgotten once they step out of the hex
-    public LayerMask targetable;							// View
     public List<string> attackableFactionsList;				// List of attackable factinos
 
     [Header("Status")]

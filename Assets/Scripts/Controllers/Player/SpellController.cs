@@ -91,7 +91,6 @@ public class SpellController : MonoBehaviour
                     new Vector3(Mathf.RoundToInt(Random.Range(0,spellCollider.radius)),Mathf.RoundToInt(Random.Range(0,spellCollider.radius)),0)
                     + gameObject.transform.position
                 );
-                Debug.Log(spawnPosition);
                 Instantiate(spellScriptable.spellSummon,spawnPosition,Quaternion.identity);
             } 
         }

@@ -11,7 +11,7 @@ public class MobController : MonoBehaviour
     public MobScriptable mobScriptable;                                     // Mob stats
 	public int hitPoints = 3;					                            // Current hit points
 	public float mobCurrentSpeed = 3f;					                    // Current Mob speed
-	public float mobCurrentCleanSpeed = 3f;					                    // Current Mob speed
+	public float mobCurrentCleanSpeed = 3f;					                // Current Mob speed
 
 
     [Header("Params")]
@@ -28,7 +28,7 @@ public class MobController : MonoBehaviour
     [Header("Status")]
 	[Space]
     public bool isChilled;                                                  // Is Mob chilled
-    public bool isIced;                                                  // Is Mob iced
+    public bool isIced;                                                     // Is Mob iced
 
     [Header("UI")]
 	[Space]
@@ -107,7 +107,6 @@ public class MobController : MonoBehaviour
     {   
         // Set Mob speed at 0 if its inferior to 1
         mobCurrentCleanSpeed = mobCurrentSpeed < 0 ? 0 : mobCurrentSpeed;
-        //Debug.Log(mobCurrentSpeed);
 
         if(mobCurrentTarget != null && !isFollowingPlayerGoTo)      // Move towards given GameObject
         {
@@ -207,7 +206,6 @@ public class MobController : MonoBehaviour
         // Check if Mob is immune
         if(!GetMobStatusImmunity("Chill")) 
         {
-            Debug.Log("---- isApplied : " + isApplied + " - isChilled : " + isChilled + " - isIced : " + isIced);
             if(isApplied)
             {
                 if(!isChilled && !isIced)
@@ -238,7 +236,6 @@ public class MobController : MonoBehaviour
         {
             if(isApplied)
             {
-                Debug.Log("----ApplyStatusIce : " + isApplied);
                 if(!isIced)
                 {
                     mobCurrentSpeed -= 999; 

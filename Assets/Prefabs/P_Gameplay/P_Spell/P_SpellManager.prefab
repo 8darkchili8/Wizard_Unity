@@ -204,22 +204,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 571757096735634983}
     m_Modifications:
+    - target: {fileID: 463365838741072530, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3518481125594890076, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 26781959599989548}
-    - target: {fileID: 3518481125594890076, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePlayerCurrentSpellByUI
-      objectReference: {fileID: 0}
     - target: {fileID: 4224620611125020280, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 26781959599989548}
-    - target: {fileID: 4224620611125020280, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePlayerCurrentSpellByUI
-      objectReference: {fileID: 0}
     - target: {fileID: 5003323984659225779, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -232,14 +228,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 26781959599989548}
-    - target: {fileID: 5307184220343077092, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePlayerCurrentSpellByUI
-      objectReference: {fileID: 0}
     - target: {fileID: 6839361691997358589, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
       propertyPath: spellManager
       value: 
       objectReference: {fileID: 26781959599989548}
+    - target: {fileID: 6979487993556470842, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575029311920547208, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7714522832675769203, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -284,10 +284,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 26781959599989548}
-    - target: {fileID: 8738002925596198050, guid: 94d3aaa5af5c7d545b89622a683b2046, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdatePlayerCurrentSpellByUI
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
