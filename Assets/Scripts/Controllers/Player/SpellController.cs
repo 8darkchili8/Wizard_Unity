@@ -46,6 +46,10 @@ public class SpellController : MonoBehaviour
         if(spellScriptable.spellDamage > 0)
         {
             ApplySpellDamage();
+        }
+        // Status
+        if(spellScriptable.statusList.Count > 0)
+        {
             ApplySpellStatus();
         }
         // Summon

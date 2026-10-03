@@ -39,7 +39,7 @@ public class SelectionColliderController : MonoBehaviour
         // Mob selection (Enemy and PlayerMob)
         if (!selectedMobs.Contains(collider.gameObject) && (collider.gameObject.layer == LayerMask.NameToLayer("Enemy") || collider.gameObject.layer == LayerMask.NameToLayer("PlayerMob")))
         {   
-            if(collider.gameObject.GetComponent<MobController>().mobScriptable.isSelectable)
+            if(collider.gameObject.GetComponent<MobController>().isSelectableByPlayer)
             {
                 selectedMobs.Add(collider.gameObject);
             }

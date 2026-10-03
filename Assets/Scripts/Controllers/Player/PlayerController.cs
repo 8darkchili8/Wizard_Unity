@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
             }
         
         }
-
         #endregion
 
         #region Spell casting controls

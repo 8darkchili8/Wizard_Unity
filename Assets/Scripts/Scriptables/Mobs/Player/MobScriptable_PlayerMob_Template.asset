@@ -16,8 +16,14 @@ MonoBehaviour:
   damage: 3
   speed: 1.25
   detectionRange: 3
+  meleeAttackCooldown: 3
+  statusImmunityList: []
+  chillSpeedMalus: 0.25
+  chillMalusTime: 3
+  iceMalusTime: 3
+  charmMalusTime: 3
   faction: PlayerMob
-  attackableFactions:
+  attackableFactionsLayer:
     serializedVersion: 2
     m_Bits: 128
   attackableFactionsList:

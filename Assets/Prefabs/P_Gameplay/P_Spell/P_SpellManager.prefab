@@ -49,7 +49,7 @@ MonoBehaviour:
   spellArray:
   - {fileID: 11400000, guid: 30382348fcfe5b64f91b4751ff2c81c7, type: 2}
   - {fileID: 11400000, guid: 83d82bda650ec4d47a7c6e4623fb383d, type: 2}
-  - {fileID: 11400000, guid: 02526e1b2e3dcd94b999cd62faf6296f, type: 2}
+  - {fileID: 11400000, guid: e26a0851175148a4eaba516029b467c6, type: 2}
   - {fileID: 11400000, guid: f6748a815e23173478456ec01fd5c741, type: 2}
   startingSpellIndex: 1
   spellCooldownArray:

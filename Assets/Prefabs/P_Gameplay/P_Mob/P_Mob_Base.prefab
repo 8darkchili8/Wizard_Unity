@@ -145,15 +145,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   mobScriptable: {fileID: 11400000, guid: 277f36129608beb4ebabbb57251215e8, type: 2}
+  hitPoints: 3
+  mobCurrentSpeed: 3
+  mobCurrentCleanSpeed: 3
   self: {fileID: 3536408185405376462}
   view: {fileID: 7367567930353853258}
   animator: {fileID: 6142321520945210073}
+  detectionCollider: {fileID: 5268998628183337797}
   isFlippingY: 1
   isLookingAtTarget: 0
-  detectionCollider: {fileID: 7127991002115821655}
+  isSelectableByPlayer: 0
+  isInAttackCooldown: 0
   mobCurrentTarget: {fileID: 0}
+  mobCurrentTargetPosition: {x: 0, y: 0, z: 0}
+  isChilled: 0
+  isIced: 0
+  isCharmed: 0
+  charmedAttackableFactions:
+    serializedVersion: 2
+    m_Bits: 128
   uiTextDamageLocation: {fileID: 1510798439098068989}
   uiDamageVFX: {fileID: 6749581266623968882, guid: cb8e2aa38d121aa488b0f7493dd78d45, type: 3}
+  isFollowingPlayerGoTo: 0
+  isWaitingforTarget: 0
 --- !u!70 &5367114549191312112
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,6 +279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mobController: {fileID: 7993832438888257498}
   mobDetectionCollider: {fileID: 7127991002115821655}
+  attackablePriorityFaction: 
+  attackableFactionsList: []
 --- !u!58 &7127991002115821655
 CircleCollider2D:
   m_ObjectHideFlags: 0

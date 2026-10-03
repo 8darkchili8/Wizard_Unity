@@ -21,8 +21,9 @@ MonoBehaviour:
   chillSpeedMalus: 0.25
   chillMalusTime: 3
   iceMalusTime: 3
+  charmMalusTime: 3
   faction: Player
-  attackableFactions:
+  attackableFactionsLayer:
     serializedVersion: 2
     m_Bits: 128
   attackableFactionsList:

@@ -19,12 +19,13 @@ public class MobScriptable : ScriptableObject
     public float chillSpeedMalus = 0.25f;                   // Speed malus when the mob is chilled
     public float chillMalusTime = 3f;                       // Time the chill debuff is applied
     public float iceMalusTime = 3f;                         // Time the ice debuff is applied
+    public float charmMalusTime = 10f;                      // Time the charm debuff is applied
 
     [Header("Faction")]
     [Space]
     public string faction;                                  // Faction of the mob
-    public LayerMask attackableFactions;                    // Faction the mob can target
-    public List<string> attackableFactionsList;             // Faction the mob can target
+    public LayerMask attackableFactionsLayer;               // Faction the mob can target (LayerMask)
+    public List<string> attackableFactionsList;             // Faction the mob can target (List<string>)
     public string attackablePriorityFaction;                // Faction the mob targets in priority
 
     [Header("Behaviors")]

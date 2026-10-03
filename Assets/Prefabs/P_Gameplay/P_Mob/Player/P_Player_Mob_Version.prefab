@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666f41b75093a9244a52917f25408f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  isSelecting: 0
+  selectionBoxCollider: {fileID: 0}
+  selectedMobs: []
 --- !u!1001 &4405657507679727996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +163,10 @@ PrefabInstance:
       propertyPath: mobScriptable
       value: 
       objectReference: {fileID: 11400000, guid: a7e273dec7881f645aaa1b22d8d6433b, type: 2}
+    - target: {fileID: 7993832438888257498, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
+      propertyPath: isSelectableByPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9094495639511435366, guid: fa3b06b122cf34449bf128ff5b75b6bc, type: 3}
       propertyPath: m_Layer
       value: 6
